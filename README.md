@@ -1,32 +1,18 @@
-# Your Task
-Our company has released a beta version of **String Reply Service** and it has been a huge success.
-In the current implementation (as part of boilerplate code), the **String Reply Service** takes in an input string (in the format of `[a-z0-9]*`)
-and returns the input in a JSON object.
+# Overview
+**String Reply Service**
 
-For example,
-
-```
-GET /reply/kbzw9ru
-{
-    "data": "kbzw9ru"
-}
-```
-
-As the service is widely adopted, there have been increasing feature requests.
-Our project manager has come back with the following requirements for V2 of the service:
-
-The input string will now be comprised of two components, a rule and a string, separated by a dash (-).
+The input string comprises of two components, a rule and a string, separated by a dash (-).
 Rules **always** contain two numbers. Each number represents a string operation.
 
 The supported numbers are:
 
 - `1`: reverse the string
 
-   E.g. `kbzw9ru` becomes `ur9wzbk`
+  E.g. `kbzw9ru` becomes `ur9wzbk`
 
 - `2`: encode the string via MD5 hash algorithm and display as hex
 
-   E.g. `kbzw9ru` becomes `0fafeaae780954464c1b29f765861fad`
+  E.g. `kbzw9ru` becomes `0fafeaae780954464c1b29f765861fad`
 
 The numbers are applied in sequence, i.e. the output of the first rule will
 serve as the input of the second rule. The numbers can also be repeated,
@@ -53,17 +39,6 @@ GET /v2/reply/22-kbzw9ru
 }
 ```
 
-## What you need to do
-Use the boilerplate given and implement the above requirement.
-Your implementation should also consider:
-
-- Maintain the existing endpoint for backward compatibility.
-- Implement V2 endpoint for the above new requirements.
-- Additional rules are expected in future releases. The updates in rule set
-should have minimal code changes and impact to existing functionality.
-- Testability for individual rule and the application.
-Unit tests are highly recommended.
-- Endpoints should return correct status code and response message.
 For invalid request, it should return status code `400`
 with message `"Invalid input"`, for example:
    ```
@@ -72,12 +47,6 @@ with message `"Invalid input"`, for example:
        "message": "Invalid input"
    }
    ```
-
-Upon completing the task, please feel free to (though not required):
-
-- host your code on Github
-- include any readme to explain your setup/environment
-- add/implement anything you think would be beneficial
 
 ## Build project
 
@@ -96,9 +65,9 @@ To start the project, simply run
 Once the service started, the endpoint will be available at `localhost:8080`, so you can make request to the service endpoint
 
 ```json
-GET localhost:8080/reply/helloworld
+GET localhost:8080/v2/reply/11-helloworld
 
 {
-    message: "helloword"
+message: "helloword"
 }
 ```
